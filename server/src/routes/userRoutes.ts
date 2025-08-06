@@ -1,0 +1,13 @@
+import { RequestHandler, Router } from "express";
+import { getUser, loginUser, logOutUser, registerUser, setUserDemographicDetails } from "../controllers/user.controller.js";
+import { verifyJWT } from "../middlewares/auth.middleware.js";
+
+const router = Router()
+
+router.post("/", registerUser )
+router.post("/login", loginUser)
+router.post("/logout",verifyJWT,logOutUser)
+router.get("/:id", getUser)
+router.post("/:id", setUserDemographicDetails)
+
+export default router
